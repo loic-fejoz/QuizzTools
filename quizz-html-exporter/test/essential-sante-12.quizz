@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright © 2009 Préviadès -->
 <quizz:Quizz xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:quizz="http://schema.rtaw.fr/quizz" name="Le bio, naturel ou pas ?">
   <question text="La culture des matières premières, certfiées bio, n'utilise aucun engrais ni pesticide.">
     <answer text="TRUE" correct="true"/>
