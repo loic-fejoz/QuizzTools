@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quizz:Quizz xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:quizz="http://schema.rtaw.fr/quizz" name="Le bio, naturel ou pas ?">
+  <question text="La culture des matières premières, certfiées bio, n'utilise aucun engrais ni pesticide.">
+    <answer text="TRUE" correct="true"/>
+    <answer text="FALSE"/>
+  </question>
+  <question text="Un produit bio peut être testé sur les animaux.">
+    <answer text="FALSE" correct="true"/>
+  </question>
+  <question text="Un produit cosmétique importé de Chine doit répondre aux normes françaises.">
+    <answer text="TRUE" feedback="Les importateurs de cosmétiques sont tenus de s'assurer de la conformité de leurs produits à la législation française." correct="true"/>
+    <answer text="FALSE"/>
+  </question>
+  <question text="Un cosmétique bio est moins allergisant qu'un produit classique.">
+    <answer text="TRUE"/>
+    <answer text="FALSE" feedback="Les ingrédients naturels ou d'origine naturelle peuvent également être allergisants." correct="true"/>
+  </question>
+  <question text="Les produits bio s'achètent partout.">
+    <answer text="TRUE" feedback="On peut les acheter en pharmacies, parapharmacies, instituts, grandes surfaces et Internet." correct="true"/>
+    <answer text="FALSE"/>
+  </question>
+  <question text="Tous les labels bio se valent.">
+    <answer text="TRUE"/>
+    <answer text="FALSE" feedback="Le pourcentage d'ingrédients bio à respecter est différent d'un label à l'autre. Avec le label Cosmebio, il est, par exemple, possible d'utiliser plus d'huiles de synthèse qu'avec le nouveau label européen NaTrue." correct="true"/>
+  </question>
+  <question text="Un cosmétique bio ne contient pas de conservateurs.">
+    <answer text="TRUE"/>
+    <answer text="FALSE" feedback="Certains conservateurs (agréés en tant que conservateurs alimentaires), figurant sur une liste européenne, sont autorisés pour permettre au consommateur de les garder plus longtemps." correct="true"/>
+  </question>
+</quizz:Quizz>

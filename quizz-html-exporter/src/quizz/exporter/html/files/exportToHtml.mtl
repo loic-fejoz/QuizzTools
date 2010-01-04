@@ -1,0 +1,149 @@
+[module exportToHtml('http://schema.rtaw.fr/quizz')/]
+[import exportToJson /]
+[query isStringSet(s : String) : Boolean = 
+	if  s.oclIsInvalid() then false
+	else if oclIsUndefined() then false
+	else s.trim().size() <> 0 endif endif/]
+[template public export(q : Quizz)]
+[export(q, q.name)/]
+[/template]
+[template public export(q : Quizz, fileName : String)]
+[comment @main /]
+[file(fileName.concat('.html'), false)]
+<?xml version="1.0" encoding="UTF-8"?>
+<html>
+<header>
+  <title>UML 2 certification guide</title>
+  <style type="text/css">
+.question {
+  list-style-type: lower-alpha;
+}
+.correct {
+  background-color: #98ff98;
+}
+.incorrect {
+  background-color: #ff9999;
+}
+.feedback {
+  display: none;
+}
+.shownfeedback {
+  display: visible;
+}
+  </style>
+<script type="text/javascript">
+var currentQuestionIndex = 0;
+var currentQuestion;
+var quizz;
+
+var simpleQuizz = [exportToJson(q)/];
+
+function setQuizz(newQuizz) {
+  quizz = newQuizz;
+  document.title = quizz['['/]"name"[']'/];
+  document.getElementById("nbQuestion").innerHTML = quizz['['/]"question"[']'/].length;
+  setQuestionIndex(0);
+}
+
+function setQuestionIndex(questionIndex) {
+  currentQuestionIndex = questionIndex;
+  var q = quizz['['/]"question"[']'/]['['/]questionIndex[']'/];
+  document.getElementById("current").innerHTML = questionIndex + 1;
+  setQuestion(q);
+}
+
+function setQuestion(question) {
+  currentQuestion = question;
+  document.getElementById("title").innerHTML = question['['/]"title"[']'/];
+  document.getElementById("question-text").innerHTML = question['['/]"text"[']'/];
+  var answers = question['['/]"answer"[']'/];
+  var html = "";
+  var ans;
+  for(ansi in answers) {
+    ans = answers['['/]ansi[']'/];
+    html += "<li class='answer' id='answer" + ansi + "'><input id='answer-input" + ansi + "' type='checkbox'/><label for='answer" + ansi + "'>" + ans['['/]"text"[']'/] + "</label> <span id='answer-feedback" + ansi + "' class='feedback'>";
+    if (ans['['/]"feedback"[']'/]) {
+        html += ans['['/]"feedback"[']'/];
+    };	
+    html += "</span></li>";
+  }
+  document.getElementById("question-answers").innerHTML = html;
+}
+
+function seeAnswers() {
+  var quizzButton = document.getElementById("quizzButton");
+  quizzButton.value = "next question";
+  quizzButton.onclick = nextQuestion;
+  var ans;
+  var listItem;
+  var inputCB;
+  var answers = currentQuestion['['/]"answer"[']'/];
+  var feedback;
+  for(ansi in answers) {
+    ans = currentQuestion['['/]"answer"[']'/]['['/]ansi[']'/];
+    listItem = document.getElementById("answer" + ansi);
+    inputCB = document.getElementById("answer-input" + ansi);
+    feedback = document.getElementById("answer-feedback" + ansi);
+    feedback.className += "shownfeedback";    
+    if (ans['['/]"correct"[']'/]) {
+      listItem.className += " correct";
+      if (inputCB.checked) {
+        incScore(1);
+      }
+      incMaxScore(1);
+    } else {
+      listItem.className += " incorrect";
+    }
+  }
+  return false;
+}
+
+function incScore(increment) {
+  var scoreElt = document.getElementById("score");
+  scoreElt.innerHTML = parseInt(scoreElt.innerHTML, 10) + increment;
+}
+
+function incMaxScore(increment) {
+  var scoreElt = document.getElementById("maxScore");
+  scoreElt.innerHTML = parseInt(scoreElt.innerHTML, 10) + increment;
+}
+
+function getScore() {
+  return parseInt(document.getElementById("score").innerHTML);
+}
+
+function getMaxScore() {
+  return parseInt(document.getElementById("maxScore").innerHTML);
+}
+
+function nextQuestion() {
+  if (currentQuestionIndex >= quizz['['/]"question"[']'/].length - 1) {
+    var score = getScore();
+    alert("You have finished the test with score: " + score + "!");
+    return false;
+  }
+  setQuestionIndex(currentQuestionIndex + 1);
+  var quizzButton = document.getElementById("quizzButton");
+  quizzButton.value = "see answers";
+  quizzButton.onclick = seeAnswers;
+  return false;
+}
+
+</script>
+</header>
+<body onload="setQuizz(simpleQuizz);">
+<h1><span id="title">Title</span> - <span id="current">1</span>/<span id="nbQuestion">20</span></h1>
+<p id='question-text'>Question</p>
+<form>
+<ol id='question-answers' class='question'>
+	<li><input type='checkbox'/><label>answer 1 </label><span class="feedback">Blah blah blah</span></li>
+	<li><input type='checkbox'/>answer 2</li>
+	<li><input type='checkbox'/>answer 3</li>
+	<li><input type='checkbox'/>answer 4</li>
+</ol>
+<input id="quizzButton" type="submit" value="See answers" onclick="return seeAnswers();"/>
+</form>
+<p>Your score: <span id='score'>0</span>/<span id='maxScore'>0</span></p>
+</html>
+[/file]
+[/template]

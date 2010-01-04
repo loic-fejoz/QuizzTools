@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quizz:Category xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:quizz="http://schema.rtaw.fr/quizz" name="tom">
+  <subCategory name="dick">
+    <subCategory name="harry"/>
+  </subCategory>
+</quizz:Category>

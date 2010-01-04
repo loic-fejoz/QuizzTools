@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.quizz"
+            id="quizz.exporter.html.ui.popupMenus.contribution.IFile">
+         <menu id="org.eclipse.acceleo.module.menu" label="Model to Text Transformation" path="additionsAcceleo">
+               <groupMarker name="acceleo"/> 
+         </menu>
+         <action
+               class="quizz.exporter.html.ui.popupMenus.Exporter2HtmlUIAction"
+               enablesFor="+"
+               id="quizz.exporter.html.ui.popupMenus.acceleoGenerateQuizzHtmlExporterUIAction"
+               icon="icons/default.gif"
+               label="export to HTML"
+               menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
+         <action
+               class="quizz.exporter.html.ui.popupMenus.Exporter2JsonUIAction"
+               enablesFor="+"
+               id="quizz.exporter.html.ui.popupMenus.acceleoGenerateQuizzJsonExporterUIAction"
+               icon="icons/default.gif"
+               label="export to Json"
+               menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>               
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <category
+            id="quizz-html-exporter-ui.quizz-category"
+            name="Quizz">
+      </category>
+      <wizard
+            category="quizz-html-exporter-ui.quizz-category"
+            class="quizz.exporter.html.ui.exportwizard.HtmlExportWizard"
+            id="quizz-html-exporter-ui.html-wizard"
+            name="Html export">
+      </wizard>
+      <wizard
+            category="quizz-html-exporter-ui.quizz-category"
+            class="quizz.exporter.html.ui.exportwizard.JsonExportWizard"
+            id="quizz-html-exporter-ui.json-wizard"
+            name="Json export">
+      </wizard>      
+   </extension>
+</plugin>

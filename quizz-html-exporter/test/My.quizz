@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quizz:Quizz xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:quizz="http://schema.rtaw.fr/quizz" name="test">
+  <question title="Simple arithmetic" text="Which answer equals 5?">
+    <answer text="= 2 + 2"/>
+    <answer text="= 2 + 3" correct="true"/>
+    <answer text="= 2 + 4"/>
+  </question>
+  <question title="GIFT Control character" textFormat="markdown" text="Which of the following is *not* a control character for the GIFT import format?">
+    <answer text="~"/>
+    <answer text="="/>
+    <answer text="#"/>
+    <answer text="{"/>
+    <answer text="}"/>
+    <answer text="\" feedback="Correct! \ (backslash) is not a control character. But it is used  to escape the control characters." correct="true"/>
+  </question>
+  <question>
+    <category href="MyCategories.quizz#harry"/>
+  </question>
+  <question text="Is SysML a UML profile?">
+    <answer text="TRUE" correct="true"/>
+    <answer text="FALSE"/>
+  </question>
+  <question title="Grant's tomb" text="Grant is buried in Grant's tomb.">
+    <answer text="TRUE" feedback="Right, well done." correct="true"/>
+    <answer text="FALSE" feedback="Wrong, No one is buried in Grant's tomb."/>
+  </question>
+  <question title="Grant's tomb" text="How Grant is in Grant's tomb?">
+    <answer text="buried" feedback=""/>
+    <answer text="entombed" correct="true"/>
+    <answer text="living"/>
+  </question>
+  <question text="Which country originally came Japanese characters from?">
+    <answer text="India" feedback="Sorry"/>
+    <answer text="China" feedback="Correct!" correct="true"/>
+    <answer text="Korea" feedback="Try again."/>
+    <answer text="Egypt" feedback="That's not it."/>
+  </question>
+  <question textFormat="markdown" text="On which Thursday of November is the *American holiday of Thanksgiving* celebrated?">
+    <answer text="second"/>
+    <answer text="third"/>
+    <answer text="fourth" feedback="" correct="true"/>
+  </question>
+</quizz:Quizz>

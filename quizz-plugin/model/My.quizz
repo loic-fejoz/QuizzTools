@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quizz:Quizz xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:quizz="http://schema.rtaw.fr/quizz" name="test">
+  <question title="Simple arithmetic" text="Which answer equals 5?">
+    <answer text="2 + 2"/>
+    <answer text="2 + 3" correct="true"/>
+    <answer text="2 + 4"/>
+  </question>
+  <question title="GIFT Control character" textFormat="markdown" text="Which of the following is *not* a control character for the GIFT import format?">
+    <answer text="~"/>
+    <answer text="="/>
+    <answer text="#"/>
+    <answer text="{"/>
+    <answer text="}"/>
+    <answer text="\" feedback="Correct! \ (backslash) is not a control character. But it is used  to escape the control characyers." correct="true"/>
+  </question>
+  <question/>
+  <question text="Is SysML a UML profile?">
+    <answer text="TRUE" correct="true"/>
+    <answer text="FALSE"/>
+  </question>
+</quizz:Quizz>

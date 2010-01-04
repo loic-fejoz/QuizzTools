@@ -1,0 +1,39 @@
+[module exportToJson('http://schema.rtaw.fr/quizz')/]
+[template encodeInHtml(txt: String, originalFormat: TextFormat)]
+[if (originalFormat.toString() = 'html')][txt/][else][txt.replaceAll('<', '&lt;').replaceAll('>', '&gt;')/][/if]
+[/template]
+[template public exportToJson(q : Quizz)]
+{
+  "name": "[q.name/]",
+  "question": ['['/]
+[for (question : Question | q.question) separator(',')]
+  {
+    "title": [if (question.title.oclIsUndefined())]"question"[else]"[question.title/]"[/if],
+    "text": "[encodeInHtml(question.text, question.textFormat)/]",
+    "textFormat": "[question.textFormat.toString()/]",
+    "isTrueFalse": "[question.isTrueFalse()/]",
+    "answer": ['['/]
+[if (question.answer->notEmpty())]
+[for (answer : Answer | question.answer) separator(',')]
+	     {
+           "text": "[answer.text/]",
+           "correct": [answer.correct/],
+           "feedback": "[answer.feedback/]",
+         }
+[/for]
+[/if]
+    [']'/]
+  }
+[/for]
+  [']'/]
+}
+[/template]
+[template public export(q : Quizz)]
+[export(q, q.name)/]
+[/template]
+[template public export(q : Quizz, fileName : String)]
+[comment @main /]
+[file(fileName.concat('.json'), false)]
+[exportToJson(q)/]
+[/file]
+[/template]
