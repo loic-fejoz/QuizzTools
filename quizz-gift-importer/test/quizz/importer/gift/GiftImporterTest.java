@@ -25,15 +25,20 @@ public class GiftImporterTest {
 		Question q = importer.readQuestion(questionText + " {\n" +
 				"~ "+ ansText1 + "\n" +
 				"= "+ ansText2 + "\n" +
-				"= "+ ansText3 + "\n" +
+				"~ "+ ansText3 + "\n" +
 				"}");
+		assertNotNull(q);
+		System.out.println(q.toString());
 		assertEquals(questionText, q.getText());
 		assertEquals(null, q.getTitle());
 		assertNotNull(q.getAnswer());
 		assertEquals(3, q.getAnswer().size());
-		assertEquals(ansText1, q.getAnswer().get(1).getText());
-		assertEquals(ansText2, q.getAnswer().get(2).getText());
-		assertEquals(ansText3, q.getAnswer().get(3).getText());
+		assertEquals(ansText1, q.getAnswer().get(0).getText());
+		assertFalse(q.getAnswer().get(0).isCorrect());
+		assertEquals(ansText2, q.getAnswer().get(1).getText());
+		assertTrue(q.getAnswer().get(1).isCorrect());
+		assertEquals(ansText3, q.getAnswer().get(2).getText());
+		assertFalse(q.getAnswer().get(2).isCorrect());
 		
 	}
 	
@@ -53,9 +58,9 @@ public class GiftImporterTest {
 		assertEquals(questionTitle, q.getTitle());
 		assertNotNull(q.getAnswer());
 		assertEquals(3, q.getAnswer().size());
-		assertEquals(ansText1, q.getAnswer().get(1).getText());
-		assertEquals(ansText2, q.getAnswer().get(2).getText());
-		assertEquals(ansText3, q.getAnswer().get(3).getText());
+		assertEquals(ansText1, q.getAnswer().get(0).getText());
+		assertEquals(ansText2, q.getAnswer().get(1).getText());
+		assertEquals(ansText3, q.getAnswer().get(2).getText());
 		
 	}	
 

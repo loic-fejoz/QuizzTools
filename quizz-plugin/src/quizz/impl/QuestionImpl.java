@@ -397,7 +397,7 @@ public class QuestionImpl extends EObjectImpl implements Question {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
@@ -410,6 +410,8 @@ public class QuestionImpl extends EObjectImpl implements Question {
 		result.append(textFormat);
 		result.append(", text: ");
 		result.append(text);
+		result.append(", answers: ");
+		result.append(getAnswer().toString());
 		result.append(')');
 		return result.toString();
 	}

@@ -46,12 +46,27 @@ public class GiftImporter {
 		j = i;
 		
 		// Read answers
-		Answer ans = factory.createAnswer();
+		Answer ans;
 		while(true) {
+			ans = factory.createAnswer();
+			// Skip characters until =(true) or ~(false)
 			for(; i < input.length() && input.charAt(i) != '}' && input.charAt(i) != '~' && input.charAt(i) != '='; i++) {};
 			if (input.charAt(i) == '}') {
 				break;
 			}
+			j = i+1;
+			if (input.charAt(i) == '~') {
+				ans.setCorrect(false);
+				i++;
+			}
+			if (input.charAt(i) == '=') {
+				ans.setCorrect(true);
+				i++;
+			}
+			// Read answer's text.
+			for(; i < input.length() && input.charAt(i) != '}' && input.charAt(i) != '\r' && input.charAt(i) != '\n'; i++) {};
+			ans.setText(input.substring(j, i).trim());
+			result.getAnswer().add(ans);
 		}
 		
 		
