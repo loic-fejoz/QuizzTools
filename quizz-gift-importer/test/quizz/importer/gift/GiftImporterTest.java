@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import quizz.Question;
+import quizz.Quizz;
 
 public class GiftImporterTest {
 	
@@ -62,6 +63,53 @@ public class GiftImporterTest {
 		assertEquals(ansText2, q.getAnswer().get(1).getText());
 		assertEquals(ansText3, q.getAnswer().get(2).getText());
 		
-	}	
+	}
+	
+	@Test
+	public void testImportTwoQuestions() {
+		final String question1Text = "Which answer equals 5?";
+		final String ans1Text1 = "2 + 2";
+		final String ans1Text2 = "2 + 3";
+		final String ans1Text3 = "2 + 4";
+		final String question2Text = "Which answer equals 6?";
+		final String ans2Text1 = "2 + 3";
+		final String ans2Text2 = "2 + 4";
+		final String ans2Text3 = "2 + 5";
+		Quizz q = importer.readQuizz(question1Text + " {\n" +
+				"~ "+ ans1Text1 + "\n" +
+				"= "+ ans1Text2 + "\n" +
+				"~ "+ ans1Text3 + "\n" +
+				"}\n" + 
+				question2Text + " {\n" +
+				"~ "+ ans2Text1 + "\n" +
+				"= "+ ans2Text2 + "\n" +
+				"~ "+ ans2Text3 + "\n" +
+				"}\n");
+		assertNotNull(q);
+		System.out.println(q.toString());
+		assertEquals(2, q.getQuestion().size());
+		final Question q1 = q.getQuestion().get(0);
+		assertEquals(question1Text, q1.getText());
+		assertEquals(null, q1.getTitle());
+		assertNotNull(q1.getAnswer());
+		assertEquals(3, q1.getAnswer().size());
+		assertEquals(ans1Text1, q1.getAnswer().get(0).getText());
+		assertFalse(q1.getAnswer().get(0).isCorrect());
+		assertEquals(ans1Text2, q1.getAnswer().get(1).getText());
+		assertTrue(q1.getAnswer().get(1).isCorrect());
+		assertEquals(ans1Text3, q1.getAnswer().get(2).getText());
+		assertFalse(q1.getAnswer().get(2).isCorrect());
+		final Question q2 = q.getQuestion().get(1);
+		assertEquals(question2Text, q2.getText());
+		assertEquals(null, q2.getTitle());
+		assertNotNull(q2.getAnswer());
+		assertEquals(3, q2.getAnswer().size());
+		assertEquals(ans2Text1, q2.getAnswer().get(0).getText());
+		assertFalse(q2.getAnswer().get(0).isCorrect());
+		assertEquals(ans2Text2, q2.getAnswer().get(1).getText());
+		assertTrue(q2.getAnswer().get(1).isCorrect());
+		assertEquals(ans2Text3, q2.getAnswer().get(2).getText());
+		assertFalse(q2.getAnswer().get(2).isCorrect());
+	}
 
 }

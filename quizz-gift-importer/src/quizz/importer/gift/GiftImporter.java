@@ -7,6 +7,7 @@ package quizz.importer.gift;
 
 import quizz.Answer;
 import quizz.Question;
+import quizz.Quizz;
 import quizz.QuizzFactory;
 
 /**
@@ -17,6 +18,16 @@ public class GiftImporter {
 	
 	protected QuizzFactory factory;
 
+	protected static class PairOfQuestionAndIndex {
+		public Question q;
+		public int index;
+		
+		public PairOfQuestionAndIndex(final Question q, final int i) {
+			this.q = q;
+			index = i;
+		}
+	}
+	
 	/**
 	 * 
 	 */
@@ -28,9 +39,21 @@ public class GiftImporter {
 		this.factory = factory;
 	}
 	
+	protected int skipWhiteSpace(final String input, final int start) {
+		int i = start;
+		while(i <input.length() && Character.isSpaceChar(input.charAt(i))) {
+			i++;
+		}
+		return i;
+	}
+	
 	public Question readQuestion(final String input) {
-		int i = 0;
-		int j = 0;
+		return readQuestion(input, 0).q;
+	}
+	
+	protected PairOfQuestionAndIndex readQuestion(final String input, final int start) {
+		int i = start;
+		int j = start;
 		Question result = factory.createQuestion();
 		if (input.startsWith("::")) {
 			// Read title text
@@ -51,6 +74,9 @@ public class GiftImporter {
 			ans = factory.createAnswer();
 			// Skip characters until =(true) or ~(false)
 			for(; i < input.length() && input.charAt(i) != '}' && input.charAt(i) != '~' && input.charAt(i) != '='; i++) {};
+			if (i >= input.length()) {
+				return new PairOfQuestionAndIndex(null, i);
+			}
 			if (input.charAt(i) == '}') {
 				break;
 			}
@@ -69,7 +95,19 @@ public class GiftImporter {
 			result.getAnswer().add(ans);
 		}
 		
-		
+		return new PairOfQuestionAndIndex(result, i);
+	}
+
+	public Quizz readQuizz(final String input) {
+		final Quizz result = factory.createQuizz();
+		PairOfQuestionAndIndex qi = new PairOfQuestionAndIndex(null, 0);
+		while(qi.index < input.length()) {
+			qi = readQuestion(input, qi.index);
+			if (qi.q != null) {
+				result.getQuestion().add(qi.q);
+			}
+			qi.index++; // = skipWhiteSpace(input, qi.index);
+		}
 		return result;
 	}
 
