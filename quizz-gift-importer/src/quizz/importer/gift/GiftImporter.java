@@ -5,10 +5,15 @@
  */
 package quizz.importer.gift;
 
+import java.io.InputStream;
+import java.util.Queue;
+
 import quizz.Answer;
 import quizz.Question;
 import quizz.Quizz;
 import quizz.QuizzFactory;
+import quizz.util.CharStream;
+import quizz.util.StringCharStreamImpl;
 
 /**
  * @author Loïc Fejoz
@@ -39,74 +44,71 @@ public class GiftImporter {
 		this.factory = factory;
 	}
 	
-	protected int skipWhiteSpace(final String input, final int start) {
-		int i = start;
-		while(i <input.length() && Character.isSpaceChar(input.charAt(i))) {
-			i++;
-		}
-		return i;
-	}
-	
 	public Question readQuestion(final String input) {
-		return readQuestion(input, 0).q;
+		return readQuestion(new StringCharStreamImpl(input));
 	}
 	
-	protected PairOfQuestionAndIndex readQuestion(final String input, final int start) {
-		int i = start;
-		int j = start;
+	protected Question readQuestion(final CharStream cs) {
+		cs.setMark();
 		Question result = factory.createQuestion();
-		if (input.startsWith("::")) {
+		if (cs.startsWith("::")) {
 			// Read title text
-			i = j = 2;
-			for(; i < input.length() && input.charAt(i) != ':'; i++) {};
-			result.setTitle(input.substring(j, i).trim());
-			j = i + 2;
+			cs.skip(2);
+			cs.setMark();
+			for(; cs.available() && cs.charAt(0) != ':'; cs.skip()) {};
+			result.setTitle(cs.getFromMark().trim());
+			cs.skip(2);
+			cs.setMark();
 		}
 		
 		// Read question text
-		for(; i < input.length() && input.charAt(i) != '{'; i++) {};
-		result.setText(input.substring(j, i).trim());
-		j = i;
+		for(; cs.available() && cs.charAt(0) != '{'; cs.skip()) {};
+		result.setText(cs.getFromMark().trim());
+		cs.setMark();
 		
 		// Read answers
 		Answer ans;
 		while(true) {
 			ans = factory.createAnswer();
 			// Skip characters until =(true) or ~(false)
-			for(; i < input.length() && input.charAt(i) != '}' && input.charAt(i) != '~' && input.charAt(i) != '='; i++) {};
-			if (i >= input.length()) {
-				return new PairOfQuestionAndIndex(null, i);
+			for(; cs.available() && cs.charAt(0) != '}' && cs.charAt(0) != '~' && cs.charAt(0) != '='; cs.skip()) {};
+			if (!cs.available()) {
+				return null;
 			}
-			if (input.charAt(i) == '}') {
+			if (cs.charAt(0) == '}') {
+				cs.skip();
 				break;
 			}
-			j = i+1;
-			if (input.charAt(i) == '~') {
+			if (cs.charAt(0) == '~') {
 				ans.setCorrect(false);
-				i++;
+				cs.skip();
 			}
-			if (input.charAt(i) == '=') {
+			if (cs.charAt(0) == '=') {
 				ans.setCorrect(true);
-				i++;
+				cs.skip();
 			}
+			cs.setMark();
 			// Read answer's text.
-			for(; i < input.length() && input.charAt(i) != '}' && input.charAt(i) != '\r' && input.charAt(i) != '\n'; i++) {};
-			ans.setText(input.substring(j, i).trim());
+			for(; cs.available() && cs.charAt(0) != '}' && cs.charAt(0) != '\r' && cs.charAt(0) != '\n'; cs.skip()) {};
+			ans.setText(cs.getFromMark().trim());
 			result.getAnswer().add(ans);
 		}
 		
-		return new PairOfQuestionAndIndex(result, i);
+		return result;
 	}
 
 	public Quizz readQuizz(final String input) {
+		return readQuizz(new StringCharStreamImpl(input));
+	}
+	
+	protected Quizz readQuizz(final CharStream cs) {	
 		final Quizz result = factory.createQuizz();
-		PairOfQuestionAndIndex qi = new PairOfQuestionAndIndex(null, 0);
-		while(qi.index < input.length()) {
-			qi = readQuestion(input, qi.index);
-			if (qi.q != null) {
-				result.getQuestion().add(qi.q);
+		Question q;
+		while(cs.available()) {
+			q = readQuestion(cs);
+			if (q != null) {
+				result.getQuestion().add(q);
 			}
-			qi.index++; // = skipWhiteSpace(input, qi.index);
 		}
 		return result;
 	}
