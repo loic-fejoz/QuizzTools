@@ -11,6 +11,7 @@ import quizz.Answer;
 import quizz.Question;
 import quizz.Quizz;
 import quizz.QuizzFactory;
+import quizz.TextFormat;
 import quizz.util.CharStream;
 import quizz.util.ReaderCharStreamImpl;
 import quizz.util.StringCharStreamImpl;
@@ -52,9 +53,21 @@ public class GiftImporter {
 		return readQuestion(new StringCharStreamImpl(input));
 	}
 	
+	protected void skipWhiteSpace(final CharStream cs) {
+		while(cs.available() && Character.isWhitespace(cs.charAt(0))) {
+			cs.skip();
+		}
+	}
+	
 	protected Question readQuestion(final CharStream cs) {
-		cs.setMark();
 		Question result = factory.createQuestion();
+		skipWhiteSpace(cs);
+		if (cs.startsWith("//")) {
+			// Skip comment
+			cs.skip(2);
+			for(; cs.available() && cs.charAt(0) != '\n'; cs.skip()) {};
+		}
+		cs.setMark();
 		if (cs.startsWith("::")) {
 			// Read title text
 			cs.skip(2);
@@ -62,8 +75,12 @@ public class GiftImporter {
 			for(; cs.available() && cs.charAt(0) != ':'; cs.skip()) {};
 			result.setTitle(cs.getFromMark().trim());
 			cs.skip(2);
-			cs.setMark();
 		}
+		if (cs.startsWith("[html]")) {
+			cs.skip(6);
+			result.setTextFormat(TextFormat.HTML);
+		}
+		cs.setMark();
 		
 		// Read question text
 		for(; cs.available() && cs.charAt(0) != '{'; cs.skip()) {};

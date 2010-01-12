@@ -7,6 +7,8 @@ import org.junit.Test;
 
 import quizz.Question;
 import quizz.Quizz;
+import quizz.TextFormat;
+import quizz.util.StringCharStreamImpl;
 
 public class GiftImporterTest {
 	
@@ -112,4 +114,47 @@ public class GiftImporterTest {
 		assertFalse(q2.getAnswer().get(2).isCorrect());
 	}
 
+	@Test
+	public void testToReadAQuizzThatContainAComment() {
+		final String input = "//Quizz: UML 2 certification guide\n" +
+				"Which of the following diagram types are defined in UML? {\n" +
+				"    =composite structure diagram\n" +
+				"    ~Message sequence chart\n" +
+				"    ~Data flow diagram\n" +
+				"    =Activity diagram\n" +
+				"}\n";
+		Question q = importer.readQuestion(input);
+		assertNotNull(q);
+		assertFalse(q.isTrueFalse());
+		assertEquals("Which of the following diagram types are defined in UML?", q.getText());
+		assertEquals(4, q.getAnswer().size());
+		assertEquals("composite structure diagram", q.getAnswer().get(0).getText());
+		assertTrue(q.getAnswer().get(0).isCorrect());
+		assertEquals("Message sequence chart", q.getAnswer().get(1).getText());
+		assertFalse(q.getAnswer().get(1).isCorrect());
+		assertEquals("Data flow diagram", q.getAnswer().get(2).getText());
+		assertFalse(q.getAnswer().get(2).isCorrect());
+		assertEquals("Activity diagram", q.getAnswer().get(3).getText());
+		assertTrue(q.getAnswer().get(3).isCorrect());
+	}
+	
+	@Test
+	public void testAQuestionThatIsHTMLFormatted() {
+		final String input = "[html]<img src=\"\"/> Which statements are correct? {" +
+				"    ~The import relationship between Q and P is an ElementImport.\n" +
+				"    =B is known in Q.\n" +
+				"    =B is known in A.\n" +
+				"    ~B is known in C.\n" +
+				"    ~P is known in C.\n" +
+				"    ~It's possible to define an alias at the import relationship between Q and P." +
+				"}";
+		final Question q= importer.readQuestion(input);
+		assertNotNull(q);
+		System.out.println(q.toString());
+		assertEquals("<img src=\"\"/> Which statements are correct?", q.getText());
+		assertEquals(TextFormat.HTML, q.getTextFormat());
+		assertEquals(6, q.getAnswer().size());
+		assertEquals("The import relationship between Q and P is an ElementImport.", q.getAnswer().get(0).getText());
+		assertEquals("It's possible to define an alias at the import relationship between Q and P.", q.getAnswer().get(5).getText());
+	}
 }
