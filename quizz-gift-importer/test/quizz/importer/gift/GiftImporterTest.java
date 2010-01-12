@@ -29,7 +29,7 @@ public class GiftImporterTest {
 				"~ "+ ansText3 + "\n" +
 				"}");
 		assertNotNull(q);
-		System.out.println(q.toString());
+		//System.out.println(q.toString());
 		assertEquals(questionText, q.getText());
 		assertEquals(null, q.getTitle());
 		assertNotNull(q.getAnswer());
@@ -86,7 +86,7 @@ public class GiftImporterTest {
 				"~ "+ ans2Text3 + "\n" +
 				"}\n");
 		assertNotNull(q);
-		System.out.println(q.toString());
+		//System.out.println(q.toString());
 		assertEquals(2, q.getQuestion().size());
 		final Question q1 = q.getQuestion().get(0);
 		assertEquals(question1Text, q1.getText());

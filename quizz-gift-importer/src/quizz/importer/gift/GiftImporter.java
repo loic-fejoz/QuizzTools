@@ -5,14 +5,14 @@
  */
 package quizz.importer.gift;
 
-import java.io.InputStream;
-import java.util.Queue;
+import java.io.Reader;
 
 import quizz.Answer;
 import quizz.Question;
 import quizz.Quizz;
 import quizz.QuizzFactory;
 import quizz.util.CharStream;
+import quizz.util.ReaderCharStreamImpl;
 import quizz.util.StringCharStreamImpl;
 
 /**
@@ -42,6 +42,10 @@ public class GiftImporter {
 	
 	public GiftImporter(QuizzFactory factory) {
 		this.factory = factory;
+	}
+	
+	public Question readQuestion(final Reader input) {
+		return readQuestion(new ReaderCharStreamImpl(input));
 	}
 	
 	public Question readQuestion(final String input) {
@@ -99,6 +103,10 @@ public class GiftImporter {
 
 	public Quizz readQuizz(final String input) {
 		return readQuizz(new StringCharStreamImpl(input));
+	}
+	
+	public Quizz readQuizz(final Reader input) {
+		return readQuizz(new ReaderCharStreamImpl(input));
 	}
 	
 	protected Quizz readQuizz(final CharStream cs) {	
