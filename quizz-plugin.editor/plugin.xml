@@ -39,5 +39,13 @@
             contributorClass="quizz.presentation.QuizzActionBarContributor">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type id="fr.rtaw.quizz" name="Quizz type"
+       base-type="org.eclipse.emf.ecore"/>
+      <content-type id="fr.rtaw.quizz.quizz" name="XMI Quizz Format"
+       base-type="fr.rtaw.quizz" 
+       file-extensions="quizz"/>         <!-- org.eclipse.core.runtime.text/org.eclipse.emf.ecore -->
+   </extension>
 
 </plugin>
