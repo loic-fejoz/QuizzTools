@@ -1,0 +1,20 @@
+[module exportToGift('http://schema.rtaw.fr/quizz')/]
+[query isStringSet(s : String) : Boolean = 
+	if  s.oclIsInvalid() then false
+	else if oclIsUndefined() then false
+	else s.trim().size() <> 0 endif endif/]
+[template public export(q : Quizz)]
+[comment @main /]
+[export(q, q.name.replaceAll(' ', '_'))/]
+[/template]
+[template public export(q : Quizz, fileName : String)]
+[file(fileName.concat('.gift'), false)]
+[for (question : Question | q.question) separator('\n')]
+['['/][question.textFormat.toString()/][']'/][question.text/] {
+[for (answer : Answer | question.answer)]
+    [if (answer.correct)]=[else]~[/if][answer.text/]
+[/for]
+}
+[/for]
+[/file]
+[/template]
