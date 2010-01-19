@@ -14,6 +14,8 @@ import junit.framework.TestCase;
 
 import junit.textui.TestRunner;
 
+import quizz.Answer;
+import quizz.Question;
 import quizz.Quizz;
 import quizz.QuizzFactory;
 
@@ -97,6 +99,18 @@ public class QuizzTest extends TestCase {
 	public void test() {
 		fixture.setName("Foo");
 		assertEquals("Foo", fixture.getName());
+	}
+	
+	public void testToString() {
+		final Question quest = QuizzFactory.eINSTANCE.createQuestion();
+		final String questTxt = "Is it true?";
+		quest.setText(questTxt);
+		final Answer ansT = QuizzFactory.eINSTANCE.createAnswer();
+		ansT.setText("T");
+		ansT.setCorrect(true);
+		quest.getAnswer().add(ansT);
+		fixture.getQuestion().add(quest);
+		assertEquals(questTxt + " {\n    =T\n}\n", fixture.toString());
 	}
 
 } //QuizzTest

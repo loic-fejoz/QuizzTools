@@ -14,13 +14,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+
+import quizz.Answer;
+import quizz.Question;
 import quizz.Quizz;
 import quizz.importer.gift.GiftImporter;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
 /**
  * A Quizz whose content is encoded in Gift notation.
@@ -64,7 +69,14 @@ public class GiftResourceImpl extends ResourceImpl {
     @Override
     protected void doSave(OutputStream outputStream, Map<?, ?> options) throws IOException
     {
-      throw new UnsupportedOperationException();
+      final OutputStreamWriter w = new OutputStreamWriter(outputStream);
+      for(EObject obj : getContents()) {
+    	  if (obj instanceof Quizz || obj instanceof Question || obj instanceof Answer) {
+    		  w.append(obj.toString());
+    	  }
+      }
+      w.close();
+      outputStream.flush();
     }    
     
 }

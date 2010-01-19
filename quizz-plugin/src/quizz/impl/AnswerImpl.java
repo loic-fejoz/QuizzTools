@@ -271,20 +271,16 @@ public class AnswerImpl extends EObjectImpl implements Answer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (text: ");
+		StringBuffer result = new StringBuffer();
+		result.append(correct?"=":"~");
 		result.append(text);
-		result.append(", feedback: ");
-		result.append(feedback);
-		result.append(", correct: ");
-		result.append(correct);
-		result.append(')');
+//		result.append(feedback);
 		return result.toString();
 	}
 

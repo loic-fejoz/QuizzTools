@@ -214,16 +214,16 @@ public class QuizzImpl extends EObjectImpl implements Quizz {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
+		StringBuffer result = new StringBuffer();
+		for(Question quest: this.getQuestion()) {
+			result.append(quest.toString());
+		}
 		return result.toString();
 	}
 

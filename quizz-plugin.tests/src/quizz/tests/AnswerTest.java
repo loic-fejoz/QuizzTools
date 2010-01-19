@@ -135,6 +135,20 @@ public class AnswerTest extends TestCase {
 	public void testTrueismIsNotTrueFalse() {
 		fixture.setText("trueism");
 		assertFalse(fixture.isTrueFalse());
-	}		
+	}
+	
+	public void testTrueAnswerToString() {
+		final String txt = "the correct answer";
+		fixture.setText(txt);
+		fixture.setCorrect(true);
+		assertEquals("=" + txt, fixture.toString());
+	}
+	
+	public void testFalseAnswerToString() {
+		final String txt = "a bad answer";
+		fixture.setText(txt);
+		fixture.setCorrect(false);
+		assertEquals("~" + txt, fixture.toString());
+	}
 
 } //AnswerTest

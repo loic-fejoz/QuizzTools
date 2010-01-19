@@ -19,6 +19,7 @@ import junit.textui.TestRunner;
 import quizz.Answer;
 import quizz.Question;
 import quizz.QuizzFactory;
+import quizz.TextFormat;
 
 /**
  * <!-- begin-user-doc -->
@@ -141,5 +142,74 @@ public class QuestionTest extends TestCase {
 	public void testQuestionWithNoAnswerIsNotTrueFalse() {
 		assertFalse(fixture.isTrueFalse());
 	}	
+	
+	public void testPlainTrueFalseQuestionToString() {
+		final String questTxt = "the question text";
+		final Answer ans1 = QuizzFactory.eINSTANCE.createAnswer();
+		ans1.setText("1");
+		ans1.setCorrect(true);
+		final Answer ans2 = QuizzFactory.eINSTANCE.createAnswer();
+		ans2.setText("2");
+		ans2.setCorrect(false);
+		fixture.setText(questTxt);
+		final EList<Answer> l = fixture.getAnswer();
+		l.add(ans1);
+		l.add(ans2);
+		assertEquals(questTxt + " {\n    =1\n    ~2\n}\n",
+				fixture.toString());
+	}
+	
+	public void testHtmlTrueFalseQuestionToString() {
+		final String questTxt = "the question text";
+		final Answer ans1 = QuizzFactory.eINSTANCE.createAnswer();
+		ans1.setText("1");
+		ans1.setCorrect(true);
+		final Answer ans2 = QuizzFactory.eINSTANCE.createAnswer();
+		ans2.setText("2");
+		ans2.setCorrect(false);
+		fixture.setText(questTxt);
+		fixture.setTextFormat(TextFormat.HTML);
+		final EList<Answer> l = fixture.getAnswer();
+		l.add(ans1);
+		l.add(ans2);
+		assertEquals("[html]" + questTxt + " {\n    =1\n    ~2\n}\n",
+				fixture.toString());
+	}
+	
+	public void testHtmlTrueFalseQuestionWithTitleToString() {
+		final String questTxt = "the question text";
+		final String questTitle = "Title1";
+		final Answer ans1 = QuizzFactory.eINSTANCE.createAnswer();
+		ans1.setText("1");
+		ans1.setCorrect(true);
+		final Answer ans2 = QuizzFactory.eINSTANCE.createAnswer();
+		ans2.setText("2");
+		ans2.setCorrect(false);
+		fixture.setText(questTxt);
+		fixture.setTitle(questTitle);
+		fixture.setTextFormat(TextFormat.HTML);
+		final EList<Answer> l = fixture.getAnswer();
+		l.add(ans1);
+		l.add(ans2);
+		assertEquals("::" + questTitle + "::[html]" + questTxt + " {\n    =1\n    ~2\n}\n",
+				fixture.toString());
+	}
+	
+	public void testQuestionWithEmptyTitleToString() {
+		final String questTxt = "the question text";
+		final Answer ans1 = QuizzFactory.eINSTANCE.createAnswer();
+		ans1.setText("1");
+		ans1.setCorrect(true);
+		final Answer ans2 = QuizzFactory.eINSTANCE.createAnswer();
+		ans2.setText("2");
+		ans2.setCorrect(false);
+		fixture.setText(questTxt);
+		fixture.setTitle("");
+		final EList<Answer> l = fixture.getAnswer();
+		l.add(ans1);
+		l.add(ans2);
+		assertEquals(questTxt + " {\n    =1\n    ~2\n}\n",
+				fixture.toString());
+	}
 
 } //QuestionTest

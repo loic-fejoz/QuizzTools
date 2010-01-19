@@ -15,4 +15,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.acceleo.engine
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: quizz.exporter.html.files
+Export-Package: quizz.exporter.html,
+ quizz.exporter.html.files

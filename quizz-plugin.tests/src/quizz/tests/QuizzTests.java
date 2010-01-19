@@ -40,6 +40,7 @@ public class QuizzTests extends TestSuite {
 		TestSuite suite = new QuizzTests("quizz Tests");
 		suite.addTestSuite(QuestionTest.class);
 		suite.addTestSuite(AnswerTest.class);
+		suite.addTestSuite(QuizzTest.class);
 		return suite;
 	}
 
