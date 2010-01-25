@@ -88,7 +88,7 @@ public class ExportToHtml {
 	 *            are the other arguments
 	 * @throws IOException
 	 *             Thrown when the output cannot be saved.
-	 * @generated
+	 * @generated NOT
 	 */
 	public ExportToHtml(URI modelURI, File targetFolder, List<? extends Object> arguments) throws IOException {
     ResourceSet resourceSet = new ResourceSetImpl();

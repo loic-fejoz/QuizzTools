@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:mtl="http://www.eclipse.org/acceleo/mtl/0.8.0" xmlns:ocl.ecore="http://www.eclipse.org/ocl/1.1.0/Ecore">
   <mtl:Module name="exportToGift">
-    <input>
-      <takesTypesFrom href="http://schema.rtaw.fr/quizz#/"/>
-    </input>
+    <input/>
     <ownedModuleElement xsi:type="mtl:Query" name="isStringSet">
       <parameter name="s">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
@@ -56,31 +54,12 @@
     <ownedModuleElement xsi:type="mtl:Template" name="export" visibility="Public" main="true">
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=""/>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
-      <body xsi:type="mtl:TemplateInvocation" definition="/0/export.1">
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        <argument xsi:type="ocl.ecore:VariableExp" name="q" referredVariable="/0/export/q">
-          <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
-        </argument>
-        <argument xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/String_Class/replaceAll">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          <source xsi:type="ocl.ecore:PropertyCallExp">
-            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <source xsi:type="ocl.ecore:VariableExp" name="q" referredVariable="/0/export/q">
-              <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
-            </source>
-            <referredProperty xsi:type="ecore:EAttribute" href="http://schema.rtaw.fr/quizz#//Quizz/name"/>
-          </source>
-          <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" ">
-            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          </argument>
-          <argument xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="_">
-            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-          </argument>
-        </argument>
-      </body>
+      <body xsi:type="mtl:TemplateExpression"/>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=""/>
       <parameter name="q">
-        <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
+        <eAnnotations source="MTL">
+          <details key="type" value="Quizz"/>
+        </eAnnotations>
       </parameter>
     </ownedModuleElement>
     <ownedModuleElement xsi:type="mtl:Template" name="export" visibility="Public">
@@ -92,70 +71,34 @@
           <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="[">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           </body>
-          <body xsi:type="ocl.ecore:OperationCallExp" referredOperation="/1/OclAny_Class/toString">
-            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <source xsi:type="ocl.ecore:PropertyCallExp">
-              <eType xsi:type="ecore:EEnum" href="http://schema.rtaw.fr/quizz#//TextFormat"/>
-              <source xsi:type="ocl.ecore:VariableExp" name="question" referredVariable="/0/export.1/@body.1/@body.1/question">
-                <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
-              </source>
-              <referredProperty xsi:type="ecore:EAttribute" href="http://schema.rtaw.fr/quizz#//Question/textFormat"/>
-            </source>
-          </body>
+          <body xsi:type="mtl:TemplateExpression"/>
           <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="]">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           </body>
-          <body xsi:type="ocl.ecore:PropertyCallExp">
-            <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-            <source xsi:type="ocl.ecore:VariableExp" name="question" referredVariable="/0/export.1/@body.1/@body.1/question">
-              <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
-            </source>
-            <referredProperty xsi:type="ecore:EAttribute" href="http://schema.rtaw.fr/quizz#//Question/text"/>
-          </body>
+          <body xsi:type="mtl:TemplateExpression"/>
           <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=" {&#xA;"/>
           <body xsi:type="mtl:ForBlock">
             <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=""/>
             <body xsi:type="mtl:IfBlock">
               <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="="/>
-              <ifExpr xsi:type="ocl.ecore:PropertyCallExp">
-                <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/Boolean"/>
-                <source xsi:type="ocl.ecore:VariableExp" name="answer" referredVariable="/0/export.1/@body.1/@body.1/@body.6/answer">
-                  <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Answer"/>
-                </source>
-                <referredProperty xsi:type="ecore:EAttribute" href="http://schema.rtaw.fr/quizz#//Answer/correct"/>
-              </ifExpr>
               <else>
                 <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="~"/>
               </else>
             </body>
-            <body xsi:type="ocl.ecore:PropertyCallExp">
-              <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-              <source xsi:type="ocl.ecore:VariableExp" name="answer" referredVariable="/0/export.1/@body.1/@body.1/@body.6/answer">
-                <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Answer"/>
-              </source>
-              <referredProperty xsi:type="ecore:EAttribute" href="http://schema.rtaw.fr/quizz#//Answer/text"/>
-            </body>
+            <body xsi:type="mtl:TemplateExpression"/>
             <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="&#xA;"/>
             <loopVariable name="answer">
-              <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Answer"/>
+              <eAnnotations source="MTL">
+                <details key="type" value="Answer"/>
+              </eAnnotations>
             </loopVariable>
-            <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/13/OrderedSet(Answer)">
-              <source xsi:type="ocl.ecore:VariableExp" name="question" referredVariable="/0/export.1/@body.1/@body.1/question">
-                <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
-              </source>
-              <referredProperty xsi:type="ecore:EReference" href="http://schema.rtaw.fr/quizz#//Question/answer"/>
-            </iterSet>
           </body>
           <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="}&#xA;"/>
           <loopVariable name="question">
-            <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
+            <eAnnotations source="MTL">
+              <details key="type" value="Question"/>
+            </eAnnotations>
           </loopVariable>
-          <iterSet xsi:type="ocl.ecore:PropertyCallExp" eType="/13/OrderedSet(Question)">
-            <source xsi:type="ocl.ecore:VariableExp" name="q" referredVariable="/0/export.1/q">
-              <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
-            </source>
-            <referredProperty xsi:type="ecore:EReference" href="http://schema.rtaw.fr/quizz#//Quizz/question"/>
-          </iterSet>
           <each xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="\n">
             <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
           </each>
@@ -174,7 +117,9 @@
       </body>
       <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol=""/>
       <parameter name="q">
-        <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
+        <eAnnotations source="MTL">
+          <details key="type" value="Quizz"/>
+        </eAnnotations>
       </parameter>
       <parameter name="fileName">
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
@@ -431,7 +376,7 @@
         <eAnnotations source="MTL" references="/0/export"/>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="q">
-          <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
+          <eType xsi:type="ocl.ecore:VoidType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclVoid"/>
         </eParameters>
       </eOperations>
       <eOperations name="export">
@@ -441,30 +386,8 @@
         <eAnnotations source="MTL" references="/0/export.1"/>
         <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="q">
-          <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
+          <eType xsi:type="ocl.ecore:VoidType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/OclVoid"/>
         </eParameters>
-        <eParameters name="fileName">
-          <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-        </eParameters>
-      </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Quizz_Class">
-      <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-        <references href="http://schema.rtaw.fr/quizz#//Quizz"/>
-      </eAnnotations>
-      <eOperations name="export">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL" references="/0/export"/>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
-      </eOperations>
-      <eOperations name="export">
-        <eAnnotations source="http://www.eclipse.org/ocl/1.1.0/OCL">
-          <contents xsi:type="ocl.ecore:Constraint"/>
-        </eAnnotations>
-        <eAnnotations source="MTL" references="/0/export.1"/>
-        <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         <eParameters name="fileName">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </eParameters>
@@ -484,7 +407,10 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
@@ -493,64 +419,71 @@
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
-  <ecore:EPackage name="collections">
-    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Question)" instanceClassName="java.util.LinkedHashSet">
-      <elementType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ocl.ecore:OrderedSetType" name="OrderedSet(Answer)" instanceClassName="java.util.LinkedHashSet">
-      <elementType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Answer"/>
-    </eClassifiers>
-  </ecore:EPackage>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self"/>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self">
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self"/>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self"/>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self"/>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self"/>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self"/>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self"/>
   <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Answer"/>
+    <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Answer"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Answer"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Question"/>
-  </ocl.ecore:Variable>
-  <ocl.ecore:Variable name="self">
-    <eType xsi:type="ecore:EClass" href="http://schema.rtaw.fr/quizz#//Quizz"/>
-  </ocl.ecore:Variable>
+  <ocl.ecore:Variable name="self"/>
+  <ocl.ecore:Variable name="self"/>
   <ocl.ecore:Variable name="self">
     <eType xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
   </ocl.ecore:Variable>
@@ -628,198 +561,134 @@
       <details key="end" value="263"/>
     </eAnnotations>
     <eAnnotations source="positions.18" references="/0/export/@body.2">
-      <details key="start" value="264"/>
-      <details key="end" value="302"/>
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
     </eAnnotations>
-    <eAnnotations source="positions.19" references="/0/export/@body.2/q">
-      <details key="start" value="271"/>
-      <details key="end" value="272"/>
-    </eAnnotations>
-    <eAnnotations source="positions.20" references="/0/export/@body.2/@argument.1">
-      <details key="start" value="274"/>
-      <details key="end" value="301"/>
-    </eAnnotations>
-    <eAnnotations source="positions.21" references="/0/export/@body.2/@argument.1/@source">
-      <details key="start" value="274"/>
-      <details key="end" value="280"/>
-    </eAnnotations>
-    <eAnnotations source="positions.22" references="/0/export/@body.2/@argument.1/@source/q">
-      <details key="start" value="274"/>
-      <details key="end" value="275"/>
-    </eAnnotations>
-    <eAnnotations source="positions.23" references="/0/export/@body.2/@argument.1/@argument.0">
-      <details key="start" value="292"/>
-      <details key="end" value="295"/>
-    </eAnnotations>
-    <eAnnotations source="positions.24" references="/0/export/@body.2/@argument.1/@argument.1">
-      <details key="start" value="297"/>
-      <details key="end" value="300"/>
-    </eAnnotations>
-    <eAnnotations source="positions.25" references="/0/export/@body.3">
+    <eAnnotations source="positions.19" references="/0/export/@body.3">
       <details key="start" value="304"/>
       <details key="end" value="304"/>
     </eAnnotations>
-    <eAnnotations source="positions.26" references="/0/export/q">
+    <eAnnotations source="positions.20" references="/0/export/q">
       <details key="start" value="233"/>
       <details key="end" value="242"/>
     </eAnnotations>
-    <eAnnotations source="positions.27" references="/0/export.1">
+    <eAnnotations source="positions.21" references="/0/export.1">
       <details key="start" value="317"/>
       <details key="end" value="663"/>
     </eAnnotations>
-    <eAnnotations source="positions.28" references="/0/export.1/@body.0">
+    <eAnnotations source="positions.22" references="/0/export.1/@body.0">
       <details key="start" value="372"/>
       <details key="end" value="372"/>
     </eAnnotations>
-    <eAnnotations source="positions.29" references="/0/export.1/@body.1">
+    <eAnnotations source="positions.23" references="/0/export.1/@body.1">
       <details key="start" value="372"/>
       <details key="end" value="651"/>
     </eAnnotations>
-    <eAnnotations source="positions.30" references="/0/export.1/@body.1/@body.0">
+    <eAnnotations source="positions.24" references="/0/export.1/@body.1/@body.0">
       <details key="start" value="412"/>
       <details key="end" value="412"/>
     </eAnnotations>
-    <eAnnotations source="positions.31" references="/0/export.1/@body.1/@body.1">
+    <eAnnotations source="positions.25" references="/0/export.1/@body.1/@body.1">
       <details key="start" value="412"/>
       <details key="end" value="643"/>
     </eAnnotations>
-    <eAnnotations source="positions.32" references="/0/export.1/@body.1/@body.1/@body.0">
+    <eAnnotations source="positions.26" references="/0/export.1/@body.1/@body.1/@body.0">
       <details key="start" value="469"/>
       <details key="end" value="469"/>
     </eAnnotations>
-    <eAnnotations source="positions.33" references="/0/export.1/@body.1/@body.1/@body.1">
+    <eAnnotations source="positions.27" references="/0/export.1/@body.1/@body.1/@body.1">
       <details key="start" value="470"/>
       <details key="end" value="473"/>
     </eAnnotations>
-    <eAnnotations source="positions.34" references="/0/export.1/@body.1/@body.1/@body.2">
-      <details key="start" value="476"/>
-      <details key="end" value="506"/>
+    <eAnnotations source="positions.28" references="/0/export.1/@body.1/@body.1/@body.2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
     </eAnnotations>
-    <eAnnotations source="positions.35" references="/0/export.1/@body.1/@body.1/@body.2/@source">
-      <details key="start" value="476"/>
-      <details key="end" value="495"/>
-    </eAnnotations>
-    <eAnnotations source="positions.36" references="/0/export.1/@body.1/@body.1/@body.2/@source/question">
-      <details key="start" value="476"/>
-      <details key="end" value="484"/>
-    </eAnnotations>
-    <eAnnotations source="positions.37" references="/0/export.1/@body.1/@body.1/@body.3">
+    <eAnnotations source="positions.29" references="/0/export.1/@body.1/@body.1/@body.3">
       <details key="start" value="509"/>
       <details key="end" value="512"/>
     </eAnnotations>
-    <eAnnotations source="positions.38" references="/0/export.1/@body.1/@body.1/@body.4">
-      <details key="start" value="515"/>
-      <details key="end" value="528"/>
+    <eAnnotations source="positions.30" references="/0/export.1/@body.1/@body.1/@body.4">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
     </eAnnotations>
-    <eAnnotations source="positions.39" references="/0/export.1/@body.1/@body.1/@body.4/question">
-      <details key="start" value="515"/>
-      <details key="end" value="523"/>
-    </eAnnotations>
-    <eAnnotations source="positions.40" references="/0/export.1/@body.1/@body.1/@body.5">
+    <eAnnotations source="positions.31" references="/0/export.1/@body.1/@body.1/@body.5">
       <details key="start" value="530"/>
       <details key="end" value="533"/>
     </eAnnotations>
-    <eAnnotations source="positions.41" references="/0/export.1/@body.1/@body.1/@body.6">
+    <eAnnotations source="positions.32" references="/0/export.1/@body.1/@body.1/@body.6">
       <details key="start" value="533"/>
       <details key="end" value="634"/>
     </eAnnotations>
-    <eAnnotations source="positions.42" references="/0/export.1/@body.1/@body.1/@body.6/@body.0">
+    <eAnnotations source="positions.33" references="/0/export.1/@body.1/@body.1/@body.6/@body.0">
       <details key="start" value="575"/>
       <details key="end" value="575"/>
     </eAnnotations>
-    <eAnnotations source="positions.43" references="/0/export.1/@body.1/@body.1/@body.6/@body.1">
+    <eAnnotations source="positions.34" references="/0/export.1/@body.1/@body.1/@body.6/@body.1">
       <details key="start" value="579"/>
       <details key="end" value="613"/>
     </eAnnotations>
-    <eAnnotations source="positions.44" references="/0/export.1/@body.1/@body.1/@body.6/@body.1/@body.0">
+    <eAnnotations source="positions.35" references="/0/export.1/@body.1/@body.1/@body.6/@body.1/@body.0">
       <details key="start" value="600"/>
       <details key="end" value="601"/>
     </eAnnotations>
-    <eAnnotations source="positions.45" references="/0/export.1/@body.1/@body.1/@body.6/@body.1/@ifExpr">
-      <details key="start" value="583"/>
-      <details key="end" value="599"/>
-    </eAnnotations>
-    <eAnnotations source="positions.46" references="/0/export.1/@body.1/@body.1/@body.6/@body.1/@ifExpr/answer">
-      <details key="start" value="584"/>
-      <details key="end" value="590"/>
-    </eAnnotations>
-    <eAnnotations source="positions.47" references="/0/export.1/@body.1/@body.1/@body.6/@body.1/@else">
+    <eAnnotations source="positions.36" references="/0/export.1/@body.1/@body.1/@body.6/@body.1/@else">
       <details key="start" value="601"/>
       <details key="end" value="608"/>
     </eAnnotations>
-    <eAnnotations source="positions.48" references="/0/export.1/@body.1/@body.1/@body.6/@body.1/@else/@body.0">
+    <eAnnotations source="positions.37" references="/0/export.1/@body.1/@body.1/@body.6/@body.1/@else/@body.0">
       <details key="start" value="607"/>
       <details key="end" value="608"/>
     </eAnnotations>
-    <eAnnotations source="positions.49" references="/0/export.1/@body.1/@body.1/@body.6/@body.2">
-      <details key="start" value="614"/>
-      <details key="end" value="625"/>
+    <eAnnotations source="positions.38" references="/0/export.1/@body.1/@body.1/@body.6/@body.2">
+      <details key="start" value="-1"/>
+      <details key="end" value="-1"/>
     </eAnnotations>
-    <eAnnotations source="positions.50" references="/0/export.1/@body.1/@body.1/@body.6/@body.2/answer">
-      <details key="start" value="614"/>
-      <details key="end" value="620"/>
-    </eAnnotations>
-    <eAnnotations source="positions.51" references="/0/export.1/@body.1/@body.1/@body.6/@body.3">
+    <eAnnotations source="positions.39" references="/0/export.1/@body.1/@body.1/@body.6/@body.3">
       <details key="start" value="627"/>
       <details key="end" value="628"/>
     </eAnnotations>
-    <eAnnotations source="positions.52" references="/0/export.1/@body.1/@body.1/@body.6/answer">
+    <eAnnotations source="positions.40" references="/0/export.1/@body.1/@body.1/@body.6/answer">
       <details key="start" value="539"/>
       <details key="end" value="554"/>
     </eAnnotations>
-    <eAnnotations source="positions.53" references="/0/export.1/@body.1/@body.1/@body.6/@iterSet">
-      <details key="start" value="557"/>
-      <details key="end" value="572"/>
-    </eAnnotations>
-    <eAnnotations source="positions.54" references="/0/export.1/@body.1/@body.1/@body.6/@iterSet/question">
-      <details key="start" value="557"/>
-      <details key="end" value="565"/>
-    </eAnnotations>
-    <eAnnotations source="positions.55" references="/0/export.1/@body.1/@body.1/@body.7">
+    <eAnnotations source="positions.41" references="/0/export.1/@body.1/@body.1/@body.7">
       <details key="start" value="635"/>
       <details key="end" value="637"/>
     </eAnnotations>
-    <eAnnotations source="positions.56" references="/0/export.1/@body.1/@body.1/question">
+    <eAnnotations source="positions.42" references="/0/export.1/@body.1/@body.1/question">
       <details key="start" value="418"/>
       <details key="end" value="437"/>
     </eAnnotations>
-    <eAnnotations source="positions.57" references="/0/export.1/@body.1/@body.1/@iterSet">
-      <details key="start" value="440"/>
-      <details key="end" value="450"/>
-    </eAnnotations>
-    <eAnnotations source="positions.58" references="/0/export.1/@body.1/@body.1/@iterSet/q">
-      <details key="start" value="440"/>
-      <details key="end" value="441"/>
-    </eAnnotations>
-    <eAnnotations source="positions.59" references="/0/export.1/@body.1/@body.1/@each">
+    <eAnnotations source="positions.43" references="/0/export.1/@body.1/@body.1/@each">
       <details key="start" value="462"/>
       <details key="end" value="466"/>
     </eAnnotations>
-    <eAnnotations source="positions.60" references="/0/export.1/@body.1/@body.2">
+    <eAnnotations source="positions.44" references="/0/export.1/@body.1/@body.2">
       <details key="start" value="644"/>
       <details key="end" value="644"/>
     </eAnnotations>
-    <eAnnotations source="positions.61" references="/0/export.1/@body.1/@fileUrl">
+    <eAnnotations source="positions.45" references="/0/export.1/@body.1/@fileUrl">
       <details key="start" value="378"/>
       <details key="end" value="402"/>
     </eAnnotations>
-    <eAnnotations source="positions.62" references="/0/export.1/@body.1/@fileUrl/fileName">
+    <eAnnotations source="positions.46" references="/0/export.1/@body.1/@fileUrl/fileName">
       <details key="start" value="378"/>
       <details key="end" value="386"/>
     </eAnnotations>
-    <eAnnotations source="positions.63" references="/0/export.1/@body.1/@fileUrl/@argument.0">
+    <eAnnotations source="positions.47" references="/0/export.1/@body.1/@fileUrl/@argument.0">
       <details key="start" value="394"/>
       <details key="end" value="401"/>
     </eAnnotations>
-    <eAnnotations source="positions.64" references="/0/export.1/@body.2">
+    <eAnnotations source="positions.48" references="/0/export.1/@body.2">
       <details key="start" value="652"/>
       <details key="end" value="652"/>
     </eAnnotations>
-    <eAnnotations source="positions.65" references="/0/export.1/q">
+    <eAnnotations source="positions.49" references="/0/export.1/q">
       <details key="start" value="341"/>
       <details key="end" value="350"/>
     </eAnnotations>
-    <eAnnotations source="positions.66" references="/0/export.1/fileName">
+    <eAnnotations source="positions.50" references="/0/export.1/fileName">
       <details key="start" value="352"/>
       <details key="end" value="369"/>
     </eAnnotations>
