@@ -5,15 +5,12 @@ Bundle-SymbolicName: quizz.exporter.html
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: quizz.exporter.html.Activator
 Bundle-Vendor: Eclipse.org
-Require-Bundle: org.eclipse.core.runtime, 
+Require-Bundle: org.eclipse.core.runtime,
  quizz,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.ocl,
- org.eclipse.ocl.ecore,
- org.eclipse.acceleo.model,
- org.eclipse.acceleo.engine
+ org.eclipse.ocl.ecore
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: quizz.exporter.html,
- quizz.exporter.html.files
+Export-Package: quizz.exporter.html

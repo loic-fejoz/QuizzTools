@@ -25,10 +25,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import quizz.Quizz;
-import quizz.QuizzFactory;
 import quizz.QuizzPackage;
-import quizz.exporter.html.files.MyExportToHtml;
-import quizz.impl.QuizzFactoryImpl;
 import quizz.importer.gift.GiftImporter;
 
 /**
@@ -68,7 +65,7 @@ public class GenerateHtml {
 			System.exit(1);
 			return;
 		}
-		final MyExportToHtml exporter = new MyExportToHtml();
+		final ExportToHtml exporter = new ExportToHtml();
 		final File output = new File(args[1]);
 		exporter.export(output, quizz);
 		System.out.println(output.getAbsolutePath() + " was generated.");

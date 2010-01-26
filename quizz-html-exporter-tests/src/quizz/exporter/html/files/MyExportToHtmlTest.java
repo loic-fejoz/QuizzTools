@@ -14,6 +14,7 @@ import quizz.Answer;
 import quizz.Question;
 import quizz.Quizz;
 import quizz.QuizzFactory;
+import quizz.exporter.html.ExportToHtml;
 import junit.framework.TestCase;
 
 /**
@@ -22,7 +23,7 @@ import junit.framework.TestCase;
  */
 public class MyExportToHtmlTest extends TestCase {
 	
-	protected MyExportToHtml exporter;
+	protected ExportToHtml exporter;
 	private QuizzFactory factory;
 
 	/* (non-Javadoc)
@@ -30,12 +31,12 @@ public class MyExportToHtmlTest extends TestCase {
 	 */
 	protected void setUp() throws Exception {
 		super.setUp();
-		exporter = new MyExportToHtml();
+		exporter = new ExportToHtml();
 		factory = QuizzFactory.eINSTANCE;
 	}
 
 	/**
-	 * Test method for {@link quizz.exporter.html.files.MyExportToHtml#export(quizz.Quizz)}.
+	 * Test method for {@link quizz.exporter.html.ExportToHtml#export(quizz.Quizz)}.
 	 */
 	public void testExportQuizz() {
 		final Quizz quizz = factory.createQuizz();

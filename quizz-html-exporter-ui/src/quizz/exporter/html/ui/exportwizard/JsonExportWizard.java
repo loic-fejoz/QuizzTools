@@ -11,11 +11,12 @@
 package quizz.exporter.html.ui.exportwizard;
 
 import java.io.File;
-import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 
+import quizz.exporter.exportWizard.AbstractExportWizard;
 import quizz.exporter.html.ui.common.GenerateJson;
 
 /**
@@ -31,13 +32,10 @@ public class JsonExportWizard extends AbstractExportWizard {
 		super();
 	}
 
-	/* (non-Javadoc)
-	 * @see quizz.exporter.html.ui.exportwizard.AbstractExportWizard#getGenerator(org.eclipse.emf.common.util.URI, java.io.File, java.util.List)
-	 */
 	@Override
 	protected IRunnableWithProgress getGenerator(URI uri, File file,
-			List<? extends Object> arguments) {
-		return new GenerateJson(uri, file, arguments);
+			IFile output) {
+		return new GenerateJson(uri, file, output.getName() + ".json");
 	}
 
 }

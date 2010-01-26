@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Common object for Quizz Exporter
+Bundle-SymbolicName: quizz.exporter.common
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: quizz.exporter.Activator
+Bundle-Vendor: RealTime-at-Work
+Require-Bundle: org.eclipse.ui;bundle-version="3.5.1",
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources;bundle-version="3.5.1",
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
+ quizz;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: quizz.exporter.common, quizz.exporter.exportWizard, quizz.exporter.popupMenus
+Import-Package: org.eclipse.ui.dialogs

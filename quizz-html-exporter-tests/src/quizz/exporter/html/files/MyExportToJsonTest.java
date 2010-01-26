@@ -5,15 +5,16 @@ import quizz.Answer;
 import quizz.Question;
 import quizz.Quizz;
 import quizz.QuizzFactory;
+import quizz.exporter.html.ExportToJson;
 
 public class MyExportToJsonTest extends TestCase {
 
 	protected QuizzFactory factory;
-	protected MyExportToJson exporter;
+	protected ExportToJson exporter;
 
 	// @Before
 	public void setUp() throws Exception {
-		exporter = new MyExportToJson();
+		exporter = new ExportToJson();
 		factory = QuizzFactory.eINSTANCE;
 	}
 

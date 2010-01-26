@@ -16,40 +16,59 @@
             adaptable="true"
             objectClass="org.eclipse.core.resources.IFile"
             nameFilter="*.quizz"
-            id="quizz.exporter.html.ui.popupMenus.contribution.IFile">
-         <menu id="org.eclipse.acceleo.module.menu" label="Model to Text Transformation" path="additionsAcceleo">
-               <groupMarker name="acceleo"/> 
+            id="quizz.exporter.html.ui.popupMenus.contribution.IFile.quizz">
+         <menu id="quizz.module.menu" label="Quizz Transformation" path="additionsRTaW">
+               <groupMarker name="RTaW"/> 
          </menu>
          <action
                class="quizz.exporter.html.ui.popupMenus.Exporter2HtmlUIAction"
                enablesFor="+"
-               id="quizz.exporter.html.ui.popupMenus.acceleoGenerateQuizzHtmlExporterUIAction"
-               icon="icons/default.gif"
+               id="quizz.exporter.html.ui.popupMenus.GenerateQuizzHtmlExporterUIAction-quizz"
                label="export to HTML"
-               menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>
+               menubarPath="quizz.module.menu/RTaW"/>
          <action
                class="quizz.exporter.html.ui.popupMenus.Exporter2JsonUIAction"
                enablesFor="+"
-               id="quizz.exporter.html.ui.popupMenus.acceleoGenerateQuizzJsonExporterUIAction"
-               icon="icons/default.gif"
+               id="quizz.exporter.html.ui.popupMenus.GenerateQuizzJsonExporterUIAction-quizz"
                label="export to Json"
-               menubarPath="org.eclipse.acceleo.module.menu/acceleo"/>               
+               menubarPath="quizz.module.menu/RTaW"/>               
+      </objectContribution>
+      <objectContribution
+            adaptable="true"
+            objectClass="org.eclipse.core.resources.IFile"
+            nameFilter="*.gift"
+            id="quizz.exporter.html.ui.popupMenus.contribution.IFile.quizz">
+         <menu id="quizz.module.menu" label="Quizz Transformation" path="additionsRTaW">
+               <groupMarker name="RTaW"/> 
+         </menu>
+         <action
+               class="quizz.exporter.html.ui.popupMenus.Exporter2HtmlUIAction"
+               enablesFor="+"
+               id="quizz.exporter.html.ui.popupMenus.GenerateQuizzHtmlExporterUIAction-gift"
+               label="export to HTML"
+               menubarPath="quizz.module.menu/RTaW"/>
+         <action
+               class="quizz.exporter.html.ui.popupMenus.Exporter2JsonUIAction"
+               enablesFor="+"
+               id="quizz.exporter.html.ui.popupMenus.GenerateQuizzJsonExporterUIAction-gift"
+               label="export to Json"
+               menubarPath="quizz.module.menu/RTaW"/>               
       </objectContribution>
    </extension>
    <extension
          point="org.eclipse.ui.exportWizards">
       <category
-            id="quizz-html-exporter-ui.quizz-category"
+            id="quizz-exporter-ui.quizz-category"
             name="Quizz">
-      </category>
+      </category>        
       <wizard
-            category="quizz-html-exporter-ui.quizz-category"
+            category="quizz-exporter-ui.quizz-category"
             class="quizz.exporter.html.ui.exportwizard.HtmlExportWizard"
             id="quizz-html-exporter-ui.html-wizard"
             name="Html export">
       </wizard>
       <wizard
-            category="quizz-html-exporter-ui.quizz-category"
+            category="quizz-exporter-ui.quizz-category"
             class="quizz.exporter.html.ui.exportwizard.JsonExportWizard"
             id="quizz-html-exporter-ui.json-wizard"
             name="Json export">
