@@ -11,6 +11,11 @@
 package quizz.exporter.html.files;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Iterator;
 
 import quizz.Answer;
@@ -28,58 +33,81 @@ public class MyExportToJson {
 	}
 
 	public String exportToJson(Quizz quizz) {
-		StringBuffer buf = new StringBuffer();
-		exportToJson(buf, quizz, 0);
+		StringWriter buf = new StringWriter();
+		try {
+			exportToJson(buf, quizz, 0);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 		return buf.toString();
 	}
 
-	private void exportToJson(StringBuffer buf, Quizz quizz, int level) {
+	private void exportToJson(Writer buf, Quizz quizz, int level) throws IOException {
 		buf.append("{\n");
 		buf.append("  \"name\": \"");
 		buf.append(quizz.getName());
 		buf.append("\",\n");
 		buf.append("  \"question\": [\n");
-		//buf.append("\n");
+		Iterator<Question> itQuestions = quizz.getQuestion().iterator();
+		while(itQuestions.hasNext()) {
+			exportToJson(buf, itQuestions.next(), level+2);
+			if (itQuestions.hasNext()) {
+				buf.append(",");
+			}
+			buf.append("\n");
+		}
 		buf.append("  ]\n");
 		buf.append("}\n");
 	}
 
-	public void export(File folderTarget, Quizz quizz) {
-		export(folderTarget, quizz, quizz.getName());
+	public void export(File folderTarget, Quizz quizz) throws IOException {
+		export(folderTarget, quizz, quizz.getName().replaceAll(" ", "-") + ".json");
 	}
 
-	public void export(File folderTarget, Quizz quizz, String fileName) {
+	public void export(File folderTarget, Quizz quizz, String fileName) throws IOException {
+		final File target = new File(folderTarget, fileName);
+		final Writer writer = new OutputStreamWriter(new FileOutputStream(
+				target));
+		exportToJson(writer, quizz, 0);
+		writer.flush();
+		writer.close();
 	}
 	
 	public String exportToJson(Answer ans) {
-		StringBuffer buf = new StringBuffer();
-		exportToJson(buf, ans, 0);
+		StringWriter buf = new StringWriter();
+		try {
+			exportToJson(buf, ans, 0);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 		buf.append("\n");
 		return buf.toString();
 	}
 	
-	private void append(final StringBuffer buf, int level, final String value) {
+	private void append(final Writer buf, int level, final String value) throws IOException {
 		for(int i=0; i < level; i++) {
 			buf.append(' ');
 		}
 		buf.append(value);
 	}
 	
-	private void exportJsonStringAttr(final StringBuffer buf, int level, final String attrName, final String value) {
+	private void exportJsonStringAttr(final Writer buf, int level, final String attrName, final String value) throws IOException {
 		append(buf, level, "");
 		buf.append("\""+ attrName + "\": \"");
-		buf.append(value);
+		if (value != null) {
+			buf.append(value.replaceAll("\\\"", "\\\\\""));
+		}
 		buf.append("\",\n");
 	}
 	
-	private void exportJsonBooleanAttr(final StringBuffer buf, int level, final String attrName, final boolean value) {
+	private void exportJsonBooleanAttr(final Writer buf, int level, final String attrName, final boolean value) throws IOException {
 		append(buf, level, "");
 		buf.append("\""+ attrName + "\": ");
 		buf.append(Boolean.toString(value));
 		buf.append(",\n");
 	}	
 
-	private void exportToJson(StringBuffer buf, Answer ans, int level) {
+	private void exportToJson(Writer buf, Answer ans, int level) throws IOException {
 		append(buf, level, "{\n");
 		exportJsonStringAttr(buf, level+2, "text", ans.getText());
 		exportJsonBooleanAttr(buf, level+2, "correct", ans.isCorrect());
@@ -88,13 +116,17 @@ public class MyExportToJson {
 	}	
 
 	public String exportToJson(Question q) {
-		StringBuffer buf = new StringBuffer();
-		exportToJson(buf, q, 0);
+		StringWriter buf = new StringWriter();
+		try {
+			exportToJson(buf, q, 0);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 		buf.append("\n");
 		return buf.toString();
 	}
 
-	private void exportToJson(StringBuffer buf, Question q, int level) {
+	private void exportToJson(Writer buf, Question q, int level) throws IOException {
 		append(buf, level, "{\n");
 		exportJsonStringAttr(buf, level+2, "title", q.getTitle());
 		exportJsonStringAttr(buf, level+2, "text", q.getText());
