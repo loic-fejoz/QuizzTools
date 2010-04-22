@@ -108,7 +108,7 @@ public class ReaderCharStreamImpl implements CharStream {
 	 */
 	@Override
 	public void skip(int n) {
-		for(int i=0; i < n; i++) {
+		for(int i=0; i < n && available(); i++) {
 			read();
 		}
 	}

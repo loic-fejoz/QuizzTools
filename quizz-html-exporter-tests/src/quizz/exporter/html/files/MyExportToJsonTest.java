@@ -34,7 +34,7 @@ public class MyExportToJsonTest extends TestCase {
 		q.setText("T");
 		q.setCorrect(true);
 		assertEquals("{\n" + "  \"text\": \"T\",\n" + "  \"correct\": true,\n"
-				+ "  \"feedback\": \"\",\n" + "}\n", exporter.exportToJson(q));
+				+ "  \"feedback\": \"\"\n" + "}\n", exporter.exportToJson(q));
 	}
 	
 	// @Test
@@ -42,7 +42,7 @@ public class MyExportToJsonTest extends TestCase {
 		Answer q = factory.createAnswer();
 		q.setCorrect(true);
 		assertEquals("{\n" + "  \"text\": \"\",\n" + "  \"correct\": true,\n"
-				+ "  \"feedback\": \"\",\n" + "}\n", exporter.exportToJson(q));
+				+ "  \"feedback\": \"\"\n" + "}\n", exporter.exportToJson(q));
 	}	
 	
 	// @Test
@@ -51,7 +51,7 @@ public class MyExportToJsonTest extends TestCase {
 		q.setText("\"hello\"");
 		q.setCorrect(true);
 		assertEquals("{\n" + "  \"text\": \"\\\"hello\\\"\",\n" + "  \"correct\": true,\n"
-				+ "  \"feedback\": \"\",\n" + "}\n", exporter.exportToJson(q));
+				+ "  \"feedback\": \"\"\n" + "}\n", exporter.exportToJson(q));
 	}	
 
 	// @Test
@@ -66,9 +66,9 @@ public class MyExportToJsonTest extends TestCase {
 		assertEquals("{\n" + "  \"title\": \"the title\",\n"
 				+ "  \"text\": \"Is it true?\",\n"
 				+ "  \"textFormat\": \"plain\",\n"
-				+ "  \"isTrueFalse\": \"true\",\n" + "  \"answer\": [\n"
+				+ "  \"isTrueFalse\": true,\n" + "  \"answer\": [\n"
 				+ "  {\n" + "    \"text\": \"T\",\n"
-				+ "    \"correct\": true,\n" + "    \"feedback\": \"\",\n"
+				+ "    \"correct\": true,\n" + "    \"feedback\": \"\"\n"
 				+ "  }\n" + "  ]\n" + "}\n", exporter.exportToJson(q));
 	}
 
@@ -88,11 +88,11 @@ public class MyExportToJsonTest extends TestCase {
 		assertEquals("{\n" + "  \"title\": \"the title\",\n"
 				+ "  \"text\": \"Is it true?\",\n"
 				+ "  \"textFormat\": \"plain\",\n"
-				+ "  \"isTrueFalse\": \"true\",\n" + "  \"answer\": [\n"
+				+ "  \"isTrueFalse\": true,\n" + "  \"answer\": [\n"
 				+ "  {\n" + "    \"text\": \"T\",\n"
-				+ "    \"correct\": true,\n" + "    \"feedback\": \"\",\n"
+				+ "    \"correct\": true,\n" + "    \"feedback\": \"\"\n"
 				+ "  },\n" + "  {\n" + "    \"text\": \"F\",\n"
-				+ "    \"correct\": false,\n" + "    \"feedback\": \"\",\n"
+				+ "    \"correct\": false,\n" + "    \"feedback\": \"\"\n"
 				+ "  }\n" + "  ]\n" + "}\n", exporter.exportToJson(q));
 	}
 
@@ -118,17 +118,17 @@ public class MyExportToJsonTest extends TestCase {
 				+ "    \"title\": \"the title\",\n"
 				+ "    \"text\": \"Is it true?\",\n"
 				+ "    \"textFormat\": \"plain\",\n"
-				+ "    \"isTrueFalse\": \"true\",\n"
+				+ "    \"isTrueFalse\": true,\n"
 				+ "    \"answer\": [\n"
 				+ "    {\n" 
 				+ "      \"text\": \"T\",\n"
 				+ "      \"correct\": true,\n" 
-				+ "      \"feedback\": \"\",\n"
+				+ "      \"feedback\": \"\"\n"
 				+ "    },\n" 
 				+ "    {\n" 
 				+ "      \"text\": \"F\",\n"
 				+ "      \"correct\": false,\n"
-				+ "      \"feedback\": \"\",\n"
+				+ "      \"feedback\": \"\"\n"
 				+ "    }\n" 
 				+ "    ]\n" 
 				+ "  }\n"

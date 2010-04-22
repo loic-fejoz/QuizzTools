@@ -65,7 +65,11 @@ public class StringCharStreamImpl implements CharStream {
 	 */
 	@Override
 	public boolean startsWith(String expected) {
-		return value.substring(index).startsWith(expected);
+		try {
+			return value.substring(index).startsWith(expected);
+		} catch (StringIndexOutOfBoundsException e) {
+			return false;
+		}
 	}
 
 	@Override

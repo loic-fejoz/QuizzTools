@@ -92,26 +92,41 @@ public class ExportToJson {
 	}
 	
 	private void exportJsonStringAttr(final Writer buf, int level, final String attrName, final String value) throws IOException {
+		exportJsonStringAttr(buf, level, attrName, value, true);
+	}
+	
+	private void exportJsonStringAttr(final Writer buf, int level, final String attrName, final String value, final boolean hasFollowingAttribute) throws IOException {
 		append(buf, level, "");
 		buf.append("\""+ attrName + "\": \"");
 		if (value != null) {
 			buf.append(value.replaceAll("\\\"", "\\\\\""));
 		}
-		buf.append("\",\n");
+		buf.append("\"");
+		if (hasFollowingAttribute) {
+			buf.append(",");
+		}
+		buf.append("\n");
 	}
 	
 	private void exportJsonBooleanAttr(final Writer buf, int level, final String attrName, final boolean value) throws IOException {
+		exportJsonBooleanAttr(buf, level, attrName, value, true);
+	}
+	
+	private void exportJsonBooleanAttr(final Writer buf, int level, final String attrName, final boolean value, final boolean hasFollowingAttribute) throws IOException {
 		append(buf, level, "");
 		buf.append("\""+ attrName + "\": ");
 		buf.append(Boolean.toString(value));
-		buf.append(",\n");
+		if (hasFollowingAttribute) {
+			buf.append(",");
+		}
+		buf.append("\n");
 	}	
 
 	private void exportToJson(Writer buf, Answer ans, int level) throws IOException {
 		append(buf, level, "{\n");
 		exportJsonStringAttr(buf, level+2, "text", ans.getText());
 		exportJsonBooleanAttr(buf, level+2, "correct", ans.isCorrect());
-		exportJsonStringAttr(buf, level+2, "feedback", ans.getFeedback() == null? "": ans.getFeedback());
+		exportJsonStringAttr(buf, level+2, "feedback", ans.getFeedback() == null? "": ans.getFeedback(), false);
 		append(buf, level, "}");
 	}	
 
@@ -131,7 +146,7 @@ public class ExportToJson {
 		exportJsonStringAttr(buf, level+2, "title", q.getTitle());
 		exportJsonStringAttr(buf, level+2, "text", q.getText());
 		exportJsonStringAttr(buf, level+2, "textFormat", q.getTextFormat().toString());
-		exportJsonStringAttr(buf, level+2, "isTrueFalse", Boolean.toString(q.isTrueFalse()));
+		exportJsonBooleanAttr(buf, level+2, "isTrueFalse", q.isTrueFalse());
 		append(buf, level+2, "\"answer\": [\n");
 		Iterator<Answer> itAnswers = q.getAnswer().iterator();
 		while(itAnswers.hasNext()) {

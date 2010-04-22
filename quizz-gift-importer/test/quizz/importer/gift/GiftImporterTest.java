@@ -5,9 +5,16 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import quizz.Answer;
 import quizz.Question;
 import quizz.Quizz;
 import quizz.TextFormat;
@@ -158,5 +165,46 @@ public class GiftImporterTest {
 		assertEquals(6, q.getAnswer().size());
 		assertEquals("The import relationship between Q and P is an ElementImport.", q.getAnswer().get(0).getText());
 		assertEquals("It's possible to define an alias at the import relationship between Q and P.", q.getAnswer().get(5).getText());
+	}
+	
+	@Test
+	public void testTrueBooleanQuestionWithOneAnswer() {
+		final String questionText = "The importer can import yes/no question?";
+		final String input = questionText + " { T }";
+		final Question q = importer.readQuestion(input);
+		assertNotNull(q);
+		assertEquals(questionText, q.getText());
+		assertEquals(2, q.getAnswer().size());		
+		assertTrue("The question shall be a yes/no question.", q.isTrueFalse());
+		final Answer trueAns = q.getAnswer().get(0);
+		final Answer falseAns = q.getAnswer().get(1);
+		assertTrue(trueAns.isCorrect());
+		assertFalse(falseAns.isCorrect());
+		assertEquals("True", trueAns.getText());
+		assertEquals("False", falseAns.getText());		
+	}
+	
+	@Test
+	public void testFalseBooleanQuestionWithOneAnswer() {
+		final String questionText = "The importer can completly read Gift?";
+		final String input = questionText + " { F }";
+		final Question q = importer.readQuestion(input);
+		assertNotNull(q);
+		assertEquals(questionText, q.getText());
+		assertEquals(2, q.getAnswer().size());		
+		assertTrue("The question shall be a yes/no question.", q.isTrueFalse());
+		final Answer trueAns = q.getAnswer().get(0);
+		final Answer falseAns = q.getAnswer().get(1);		
+		assertFalse(trueAns.isCorrect());
+		assertTrue(falseAns.isCorrect());
+		assertEquals("True", trueAns.getText());
+		assertEquals("False", falseAns.getText());	
+	}
+	
+	@Test
+	public void testReadFile() throws FileNotFoundException {
+		
+		Reader input = new InputStreamReader(new FileInputStream(new File("/home/loic/SysML/sysml-metamodel-quizz.gift")));
+		importer.readQuizz(input);
 	}
 }

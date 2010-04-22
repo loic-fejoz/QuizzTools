@@ -106,4 +106,8 @@ public abstract class AbstractCharStreamImplTest {
 		assertFalse(fixture.startsWith("-" + fixtureString.substring(1, 4)));
 	}
 
+	@Test
+	public void testSkipMoreThanAvailable() {
+		fixture.skip(fixtureString.length() + 3);
+	}
 }

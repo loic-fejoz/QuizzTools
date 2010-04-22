@@ -102,10 +102,23 @@ public class ExportToHtml {
 		writer.append("  var answers = question[\"answer\"];\n");
 		writer.append("  var html = \"\";\n");
 		writer.append("  var ans;\n");
+		writer.append("  var kind;\n");
+		writer.append("  if (question[\"isTrueFalse\"] === true){\n");
+		writer.append("    kind = 'radio';\n");
+		writer.append("  } else {\n");
+		writer.append("    kind = 'checkbox';\n");
+		writer.append("  }\n");
+		writer.append("  var inputid;\n");
+		writer.append("  var inputname;\n");
 		writer.append("  for(ansi in answers) {\n");
 		writer.append("    ans = answers[ansi];\n");
+		writer.append("    inputid = 'answer-input' + ansi;\n");
+		writer.append("    inputname = 'answer-input';\n");
+		writer.append("    if (question[\"isTrueFalse\"] !== true){\n");
+		writer.append("      inputname += ansi;\n");
+		writer.append("    }\n");
 		writer
-				.append("    html += \"<li class='answer' id='answer\" + ansi + \"'><input id='answer-input\" + ansi + \"' type='checkbox'/><label for='answer\" + ansi + \"'>\" + ans[\"text\"] + \"</label> <span id='answer-feedback\" + ansi + \"' class='feedback'>\";\n");
+				.append("    html += \"<li class='answer' id='answer\" + ansi + \"'><input id='\" + inputid + \"' type='\" + kind + \"' name='\" + inputname + \"' /><label for='\" + inputid + \"'>\" + ans[\"text\"] + \"</label> <span id='answer-feedback\" + ansi + \"' class='feedback'>\";\n");
 		writer.append("    if (ans[\"feedback\"]) {\n");
 		writer.append("        html += ans[\"feedback\"];\n");
 		writer.append("    };	\n");

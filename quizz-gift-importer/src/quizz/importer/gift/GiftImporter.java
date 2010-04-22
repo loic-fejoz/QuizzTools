@@ -87,10 +87,43 @@ public class GiftImporter {
 		result.setText(cs.getFromMark().trim());
 		cs.setMark();
 		
+		// Skip characters until after '{'
+		for(; cs.available() && cs.charAt(0) != '{'; cs.skip()) {};
+		cs.skip();
+		
 		// Read answers
 		Answer ans;
 		while(true) {
 			ans = factory.createAnswer();
+			// Skip whitespaces
+			skipWhiteSpace(cs);
+			if (cs.startsWith("T")) {
+				ans.setCorrect(true);
+				ans.setText("True");
+				Answer other = factory.createAnswer();
+				other.setCorrect(false);
+				other.setText("False");
+				result.getAnswer().add(ans);
+				result.getAnswer().add(other);
+				cs.skip(1); // Skip T
+				if (cs.available() && cs.charAt(0) == 'R') {
+					cs.skip(3); // skip RUE
+				}
+			}
+			if (cs.startsWith("F")) {
+				Answer other = factory.createAnswer();
+				other.setCorrect(false);
+				other.setText("True");
+				ans.setCorrect(true);
+				ans.setText("False");
+				result.getAnswer().add(other);
+				result.getAnswer().add(ans);
+				cs.skip(1); // Skip F
+				if (cs.available() && cs.charAt(0) == 'A') {
+					cs.skip(4); // skip ALSE
+				}
+			}
+			
 			// Skip characters until =(true) or ~(false)
 			for(; cs.available() && cs.charAt(0) != '}' && cs.charAt(0) != '~' && cs.charAt(0) != '='; cs.skip()) {};
 			if (!cs.available()) {

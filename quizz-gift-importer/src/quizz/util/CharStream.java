@@ -6,13 +6,13 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    loic - initial API and implementation and/or initial documentation
+ *    Loïc Fejoz - initial API and implementation and/or initial documentation
  *******************************************************************************/ 
 package quizz.util;
 
 
 /**
- * @author loic
+ * @author Loïc Fejoz
  *
  */
 public interface CharStream /*extends Queue<char>*/ {
