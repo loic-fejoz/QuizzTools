@@ -203,13 +203,13 @@ public class ExportToHtml {
 		writer.append("</header>\n");
 		writer.append("<body onload=\"setQuizz(simpleQuizz);\">\n");
 		writer
-				.append("<h1><span id=\"title\">Title</span> - <span id=\"current\">1</span>/<span id=\"nbQuestion\">20</span></h1>\n");
-		writer.append("<p id='question-text'>Question</p>\n");
+				.append("<h1><span id=\"title\">Quizz Title</span> - <span id=\"current\">1</span>/<span id=\"nbQuestion\">20</span></h1>\n");
+		writer.append("<p id='question-text'>If you see this you should enable Javascript so as to pass quizz!</p>\n");
 		writer.append("<form>\n");
 		writer.append("<ol id='question-answers' class='question'>\n");
 		writer
-				.append("	<li><input type='checkbox'/><label>answer 1 </label><span class=\"feedback\">Blah blah blah</span></li>\n");
-		writer.append("	<li><input type='checkbox'/>answer 2</li>\n");
+				.append("	<li><input type='checkbox'/><label>enable javascript</label><span class=\"feedback\">Blah blah blah</span></li>\n");
+		writer.append("	<li><input type='checkbox'/>authorize javascript</li>\n");
 		writer.append("	<li><input type='checkbox'/>answer 3</li>\n");
 		writer.append("	<li><input type='checkbox'/>answer 4</li>\n");
 		writer.append("</ol>\n");
