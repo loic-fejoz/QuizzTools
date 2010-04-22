@@ -53,6 +53,9 @@ public class GiftResourceImpl extends ResourceImpl {
       GiftImporter importer = new GiftImporter();
       Reader r = new InputStreamReader(inputStream);
       Quizz quizz = importer.readQuizz(r);
+      if (quizz.getName() == null) {
+    	  quizz.setName(this.getURI().lastSegment());
+      }
 
       // Ok we got the content so keep it in memory.
       getContents().add(quizz);
