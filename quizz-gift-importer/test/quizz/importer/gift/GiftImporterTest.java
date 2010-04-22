@@ -202,9 +202,28 @@ public class GiftImporterTest {
 	}
 	
 	@Test
-	public void testReadFile() throws FileNotFoundException {
-		
-		Reader input = new InputStreamReader(new FileInputStream(new File("/home/loic/SysML/sysml-metamodel-quizz.gift")));
-		importer.readQuizz(input);
+	public void testQuestionWithFeedback() {
+		final String input = "For object nodes that are target of continuous flows (such as electrical signals), which of the following propositions would you do? {\n" +
+			 "\t~ apply stereotypes Overwrite and NoBuffer#It is forbidden to apply both at the same time.\n" + 
+			 "\t= apply Overwrite stereotype#In that case, both have the same semantic.\n" +
+			 "\t= apply NoBuffer stereotype#In that case, both have the same semantic.\n" +
+			 "}\n";
+		final Question q = importer.readQuestion(input);
+		assertNotNull(q);
+		assertEquals("For object nodes that are target of continuous flows (such as electrical signals), which of the following propositions would you do?", q.getText());
+		assertFalse(q.isTrueFalse());
+		assertEquals(3, q.getAnswer().size());
+		final Answer a1 = q.getAnswer().get(0);
+		final Answer a2 = q.getAnswer().get(1);
+		final Answer a3 = q.getAnswer().get(2);
+		assertEquals("apply stereotypes Overwrite and NoBuffer", a1.getText());
+		assertEquals("apply Overwrite stereotype", a2.getText());
+		assertEquals("apply NoBuffer stereotype", a3.getText());
+		assertEquals("It is forbidden to apply both at the same time.", a1.getFeedback());
+		assertEquals("In that case, both have the same semantic.", a2.getFeedback());
+		assertEquals("In that case, both have the same semantic.", a3.getFeedback());
+		assertFalse(a1.isCorrect());
+		assertTrue(a2.isCorrect());
+		assertTrue(a3.isCorrect());
 	}
 }

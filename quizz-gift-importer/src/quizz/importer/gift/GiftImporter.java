@@ -143,8 +143,17 @@ public class GiftImporter {
 			}
 			cs.setMark();
 			// Read answer's text.
-			for(; cs.available() && cs.charAt(0) != '}' && cs.charAt(0) != '\r' && cs.charAt(0) != '\n'; cs.skip()) {};
+			for(; cs.available() && cs.charAt(0) != '}' && cs.charAt(0) != '\r' && cs.charAt(0) != '\n' && cs.charAt(0) != '#'; cs.skip()) {};
 			ans.setText(cs.getFromMark().trim());
+			
+			// Read feedback.
+			if (cs.charAt(0) == '#') {
+				cs.skip();
+			}
+			cs.setMark();
+			for(; cs.available() && cs.charAt(0) != '}' && cs.charAt(0) != '\r' && cs.charAt(0) != '\n'; cs.skip()) {};
+			ans.setFeedback(cs.getFromMark().trim());
+			
 			result.getAnswer().add(ans);
 		}
 		
