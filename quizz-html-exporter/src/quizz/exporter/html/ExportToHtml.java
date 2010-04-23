@@ -45,6 +45,8 @@ public class ExportToHtml {
 		assert writer != null;
 		ExportToJson jsonExporter = new ExportToJson();
 		writer.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+		writer.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"");
+		writer.append("\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">");
 		writer.append("<html>\n");
 		writer.append("<header>\n");
 		writer.append("  <title>");
@@ -64,7 +66,7 @@ public class ExportToHtml {
 		writer.append("  display: none;\n");
 		writer.append("}\n");
 		writer.append(".shownfeedback {\n");
-		writer.append("  display: visible;\n");
+		writer.append("  display: inline;\n");
 		writer.append("}\n");
 		writer.append("  </style>\n");
 		writer.append("<script type=\"text/javascript\">\n");
