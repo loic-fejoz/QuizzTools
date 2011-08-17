@@ -24,7 +24,8 @@ GIFT is a textual format defined by the Moodle project. File extension is .gift.
 See  http://docs.moodle.org/fr/Format_GIFT
 
 #### Ecore/XMI ####
-The editor is based on his own Ecore model. Thus it has a default XMI serialization. File extension is .quizz.
+The editor is based on his own [Quizz Ecore model](https://github.com/loic-fejoz/QuizzTools/blob/master/quizz-plugin/model/quizz.ecore). Thus it has a default XMI serialization. File extension is .quizz.
+
 
 ## Quizz ##
  * Sample quizz can be found on [quizz-html-exporter/test](https://github.com/loic-fejoz/QuizzTools/tree/master/quizz-html-exporter/test).
