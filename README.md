@@ -27,4 +27,4 @@ See  http://docs.moodle.org/fr/Format_GIFT
 The editor is based on his own Ecore model. Thus it has a default XMI serialization. File extension is .quizz.
 
 ## Quizz ##
- * Sample quizz about SysML modeling language.
+ * Sample quizz can be found on [quizz-html-exporter/test](https://github.com/loic-fejoz/QuizzTools/tree/master/quizz-html-exporter/test).
