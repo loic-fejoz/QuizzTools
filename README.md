@@ -5,6 +5,10 @@ The editor can read file in his own XMI format or in the GIFT (Moodle) format.
 
 The License is [EPL](http://www.eclipse.org/legal/epl-v10.html "Eclipse Public License").
 
+## History ##
+It was a work done at [RealTime-at-Work](http://www.realtimeatwork.com "RTaW") while designing a [Quizz about the SysML modeling language](http://www.realtimeatwork.com/2010/06/test-quizz/).
+It also served as an example of how to open a non-XMI file as an Ecore model.
+
 ## Documentation ##
 ### Eclipse Editor ###
 All files with extension .gift and .quizz are associated with the QuizzTools editor. Just double-clic them to open them.
@@ -29,3 +33,5 @@ The editor is based on his own [Quizz Ecore model](https://github.com/loic-fejoz
 
 ## Quizz ##
  * Sample quizz can be found on [quizz-html-exporter/test](https://github.com/loic-fejoz/QuizzTools/tree/master/quizz-html-exporter/test).
+ * [Runnable html version of SysML metamodel quizz](http://www.realtimeatwork.com/wp-content/plugins/download-monitor/download.php?id=40)
+ * [Gift version of SysML metamodel quizz](http://www.realtimeatwork.com/wp-content/plugins/download-monitor/download.php?id=39)
