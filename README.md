@@ -3,6 +3,9 @@
 QuizzTools is a set of tools to create and pass quizz. It is mainly an Eclipse Editor and HTML exporter.
 The editor can read file in his own XMI format or in the GIFT (Moodle) format.
 
+![Small screenshot of Quizztools editor](https://github.com/loic-fejoz/QuizzTools/blob/master/doc/screenshots/2011-08-19-quizztools-eclipse-640x348.png)
+[Full screenshot of Quizztolls](https://github.com/loic-fejoz/QuizzTools/blob/master/doc/screenshots/2011-08-19-quizztools-eclipse.png)
+
 The License is [EPL](http://www.eclipse.org/legal/epl-v10.html "Eclipse Public License").
 
 ## History ##
