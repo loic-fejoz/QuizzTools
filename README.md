@@ -13,6 +13,9 @@ It was a work done at [RealTime-at-Work](http://www.realtimeatwork.com "RTaW") w
 It also served as an example of how to open a non-XMI file as an Ecore model.
 
 ## Documentation ##
+### Installation ###
+Use the following Update site : https://github.com/loic-fejoz/QuizzTools/raw/master/quizz-update-site/
+
 ### Eclipse Editor ###
 All files with extension .gift and .quizz are associated with the QuizzTools editor. Just double-clic them to open them.
 
